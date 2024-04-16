@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>SVG3DTagCloud - Example 5</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <script src="js/jquery.svg3dtagcloud.min.js"></script>
+
+        <link
+            href="https://fonts.googleapis.com/css?family=Oswald&subset=latin,latin-ext"
+            rel="stylesheet"
+            type="text/css"
+        />
+
+        <style type="text/css">
+            html,
+            body,
+            div,
+            span,
+            applet,
+            object,
+            iframe,
+            h1,
+            h2,
+            h3,
+            h4,
+            h5,
+            h6,
+            p,
+            blockquote,
+            pre,
+            a,
+            abbr,
+            acronym,
+            address,
+            big,
+            cite,
+            code,
+            del,
+            dfn,
+            em,
+            font,
+            img,
+            ins,
+            kbd,
+            q,
+            s,
+            samp,
+            small,
+            strike,
+            strong,
+            sub,
+            sup,
+            tt,
+            var,
+            b,
+            u,
+            i,
+            center,
+            dl,
+            dt,
+            dd,
+            ol,
+            ul,
+            li,
+            fieldset,
+            form,
+            label,
+            legend,
+            table,
+            caption,
+            tbody,
+            tfoot,
+            thead,
+            tr,
+            th,
+            td {
+                margin: 0;
+                padding: 0;
+                border: 0;
+                outline: 0;
+                font-size: 100%;
+                vertical-align: baseline;
+                background: transparent;
+                box-sizing: border-box;
+            }
+
+            body {
+                overflow: hidden;
+                background-color: #000;
+                background: transparent;
+                opacity: 1;
+            }
+        </style>
+
+        <script>
+            $(document).ready(function () {
+                var index = 0,
+                    entries = [
+                        [
+                            {
+                                label: 'Array',
+                                url: 'http://niklasknaack.blogspot.de/',
+                                target: '_top',
+                                fontSize: 34,
+                            },
+                            {
+                                label: 'String',
+                                url: 'http://www.flashforum.de/',
+                                target: '_top',
+                            },
+                            {
+                                label: 'Hash Table',
+                                url: 'http://www.jqueryscript.net/',
+                                target: '_top',
+                            },
+                            {
+                                label: 'Dynamic Programming',
+                                url: 'http://forum.jswelt.de/',
+                                target: '_top',
+                            },
+                            {
+                                label: 'Math',
+                                url: 'https://jsfiddle.net/user/NiklasKnaack/fiddles/',
+                                target: '_top',
+                            },
+                            { label: 'Sorting', url: 'http://codepen.io/', target: '_top' },
+                            { label: 'three.js', url: 'http://threejs.org/', target: '_top' },
+                            {
+                                label: 'Greedy',
+                                url: 'http://webglstudio.org/',
+                                target: '_top',
+                            },
+                            { label: 'Tree', url: 'http://jscompress.com/', target: '_top' },
+                            { label: 'Graph', url: 'https://tinypng.com/', target: '_top' },
+                            { label: 'Heap', url: 'http://caniuse.com/', target: '_top' },
+                            { label: 'Stack', url: 'https://goo.gl/', target: '_top' },
+                            {
+                                label: 'Union Find',
+                                url: 'http://www.opinionatedgeek.com/DotNet/Tools/HTMLEncode/Encode.aspx',
+                                target: '_top',
+                            },
+                            {
+                                label: 'Queue',
+                                url: 'https://twitter.com/niklaswebdev',
+                                target: '_top',
+                            },
+                            {
+                                label: 'Linked List',
+                                url: 'http://nkunited.deviantart.com/',
+                                target: '_top',
+                            },
+                            { label: 'Gulp', url: 'http://gulpjs.com/', target: '_top' },
+                            {
+                                label: 'Divide and Conquer',
+                                url: 'https://www.browsersync.io/',
+                                target: '_top',
+                            },
+                            {
+                                label: 'Topological Sort',
+                                url: 'https://github.com/',
+                                target: '_top',
+                            },
+                            {
+                                label: 'Shortest Path',
+                                url: 'https://www.shadertoy.com/',
+                                target: '_top',
+                            },
+                            {
+                                label: 'BigO',
+                                url: 'https://www.shadertoy.com/',
+                                target: '_top',
+                            },
+                            {
+                                label: 'Geometry',
+                                url: 'https://www.shadertoy.com/',
+                                target: '_top',
+                            },
+                        ],
+                    ]
+
+                var settings = {
+                    entries: entries[index],
+                    width: 480,
+                    height: 480,
+                    radius: '60%',
+                    radiusMin: 75,
+                    bgDraw: true,
+                    bgColor: '#f8f9fa',
+                    opacityOver: 1,
+                    opacityOut: 0.05,
+                    opacitySpeed: 6,
+                    fov: 800,
+                    speed: 0.4,
+                    fontFamily: 'Oswald, Arial, sans-serif',
+                    fontSize: '20',
+                    fontColor: '#456074',
+                    fontWeight: 'normal', //bold
+                    fontStyle: 'normal', //italic
+                    fontStretch: 'normal', //wider, narrower, ultra-condensed, extra-condensed, condensed, semi-condensed, semi-expanded, expanded, extra-expanded, ultra-expanded
+                    fontToUpperCase: true,
+                    tooltipFontFamily: 'Oswald, Arial, sans-serif',
+                    tooltipFontSize: '11',
+                    tooltipFontColor: '#fff',
+                    tooltipFontWeight: 'normal', //bold
+                    tooltipFontStyle: 'normal', //italic
+                    tooltipFontStretch: 'normal', //wider, narrower, ultra-condensed, extra-condensed, condensed, semi-condensed, semi-expanded, expanded, extra-expanded, ultra-expanded
+                    tooltipFontToUpperCase: false,
+                    tooltipTextAnchor: 'left',
+                    tooltipDiffX: 0,
+                    tooltipDiffY: 10,
+                }
+
+                //var svg3DTagCloud = new SVG3DTagCloud( document.getElementById( 'holder'  ), settings );
+                $('#holder').svg3DTagCloud(settings)
+            })
+        </script>
+    </head>
+
+    <body>
+        <div id="holder"></div>
+    </body>
+</html>

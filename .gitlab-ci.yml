@@ -1,0 +1,27 @@
+variables:
+    DIST_DIR: /home/www/gmp
+    WEB_CONTAINER: gmp-web
+
+before_script:
+    - mkdir -p ${DIST_DIR}
+
+cache:
+    key: ${CI_BUILD_REF_NAME}
+    paths:
+        - node_modules/
+
+stages:
+    - deploy
+
+deploy-job:
+    image: 'node:14.17.4'
+    stage: deploy
+    tags: ['gmp_web']
+    only: ['prod']
+    script:
+        - npm i -g pnpm
+        - pnpm install
+        - pnpm run build
+        - rm -rf ${DIST_DIR}/*
+        - cp -rf dist/* ${DIST_DIR}/
+        - docker restart ${WEB_CONTAINER}

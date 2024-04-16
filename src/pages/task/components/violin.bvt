@@ -1,0 +1,71 @@
+// violin(swarm)
+// 1.1
+// 2019/08/18
+// Xiao Lingran
+svg {
+	width = auto
+	height = 500
+	XYPlot {
+		height = 500
+		width = 100%
+		padding-y = 30
+		padding-x = 40
+		flip = false
+		invertValueAxis = false
+		valueRange = [-1,5]
+		data = {
+			violinData: violinData,
+			scatterData: scatterData
+		}
+		dataHandler = {
+			scatterData: {
+				pos: d => d.key,
+				min: d => 0,
+				value: d => Math.max(...d.values),
+			}
+		}
+		Rect { fill = "none"; stroke = "#000" }
+		AxisBackground {
+			dashArray = "2, 2"
+		}
+		AxisBackground {
+			orientation = "vertical"
+			dashArray = "2, 2"
+			includeEndTicks = true
+		}
+		Violins {
+			data = "violinData"
+			dataLine = false
+			quartile = false
+			extremeLine = false
+			fill = colors
+		}
+		Scatters1D {
+			data = "scatterData"
+			fill = "#555"
+		}
+		Text{
+			x = 50%; y = @geo(100,20)
+			anchor = @anchor("middle","center")
+			text = xlabel
+			fontSize = 14
+		}
+		Text{
+			x = 50%; y = -15
+			anchor = @anchor("middle","center")
+			text = title
+			fontSize = 15
+		}
+		Component{
+			x = -30; y = 50%
+			rotation = @rotate(-90)
+			Text{
+				text = ylabel
+				anchor = @anchor("middle","center")
+				fontSize = 14
+			}
+		}
+		Axis("bottom") { y = 100% }
+		Axis("left") { includeEndTicks = false }
+	}
+}
